@@ -1,0 +1,38 @@
+
+GET http://localhost:4004/odata/v4/catalog/Employees
+
+###
+
+
+POST http://localhost:4004/odata/v4/catalog/Employees
+Content-Type: application/json
+
+
+{  
+    "empId":2,
+    "firstName":"Ankit",
+    "lastName":"verma",
+    "mobileNumber":"8781920364",
+    "address":"Marathalli",
+    "city":"Bangalore",
+    "state":"Karnataka",
+    "pincode":"560035"
+}
+
+###
+
+PATCH http://localhost:4004/odata/v4/catalog/Employees/1
+Content-Type: application/json
+
+
+{
+  "pincode":"560036"
+}
+
+###
+
+DELETE http://localhost:4004/odata/v4/catalog/Employees/2
+Content-Type: application/json
+
+###
+

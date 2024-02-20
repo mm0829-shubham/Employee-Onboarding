@@ -1,0 +1,38 @@
+<mvc:View
+   controllerName="project1.controller.EmployeeDetails"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:f="sap.f"
+   xmlns:card="sap.f.cards"
+>
+   <Page title="Employee Details"  showNavButton="true" navButtonPress="onNavBack">
+   
+   
+   <headerContent>
+   	  <Button text="Edit" press="onEdit"></Button>
+	  
+
+   </headerContent>
+      <ObjectHeader intro="Employee ID" title="{employeeModel>/Employee_Id}" />
+
+      <f:Card class="sapUiMediumMargin" width="40%" height="auto">
+         <f:header>
+            <card:Header title="{employeeModel>/Employee_Full_Name}" subtitle="{employeeModel>/Employee_Department_ID}" iconSrc="sap-icon://employee-pane" />
+         </f:header>
+         <f:content 
+		  >
+            
+            <VBox>
+               <ObjectAttribute title="First Name" text="{employeeModel>/Employee_First_Name}" class="sapUiSmallMargin" />
+               <ObjectAttribute title="Last Name" text="{employeeModel>/Employee_Last_Name}"  class="sapUiSmallMargin"/>
+               <ObjectAttribute title="Full Name" text="{employeeModel>/Employee_Full_Name}" class="sapUiSmallMargin" />
+               <ObjectAttribute title="Phone Number" text="{employeeModel>/Employee_Phone_Number}" class="sapUiSmallMargin" />
+               <ObjectAttribute title="Employee Department " text="{employeeModel>/Employee_Department_ID}" class="sapUiSmallMargin" />
+               
+            </VBox>
+			
+         </f:content>
+		 
+      </f:Card>
+   </Page>
+</mvc:View>

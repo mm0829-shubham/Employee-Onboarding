@@ -1,0 +1,33 @@
+
+GET http://localhost:4004/odata/v4/catalog/Comments
+
+###
+
+
+POST http://localhost:4004/odata/v4/catalog/Comments
+Content-Type: application/json
+
+
+{  
+    "commentId":1,
+    "empId":1,
+    "comment":"kumar sfgfdsgshegdgrewgwqrgreq"
+}
+
+###
+
+PATCH http://localhost:4004/odata/v4/catalog/Comments/1
+Content-Type: application/json
+
+
+{
+   "position":"IT"
+}
+
+###
+
+DELETE http://localhost:4004/odata/v4/catalog/Comments/1
+Content-Type: application/json
+
+###
+
