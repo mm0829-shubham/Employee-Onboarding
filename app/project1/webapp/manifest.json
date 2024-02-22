@@ -67,9 +67,12 @@
         "settings": {
           "bundleName": "project1.i18n.i18n"
         }
-      },     
-      "employee": {
-    
+      },   
+      "employeeModel":{
+        "uri":"model/employeeModel.json",
+        "type": "sap.ui.model.json.JSONModel"
+      },  
+      "employee": {    
         "dataSource": "mainService",
         "preload": true,
         "settings": {

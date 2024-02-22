@@ -1,38 +1,149 @@
 <mvc:View
-   controllerName="project1.controller.EmployeeDetails"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc"
-   xmlns:f="sap.f"
-   xmlns:card="sap.f.cards"
->
-   <Page title="Employee Details"  showNavButton="true" navButtonPress="onNavBack">
-   
-   
-   <headerContent>
-   	  <Button text="Edit" press="onEdit"></Button>
-	  
+	height="100%"
+	controllerName="project1.controller.EmployeeDetails"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+ 
+	<Page
+		id="idPage1"
+		title="page"
+		class= "sapUiResponsivePadding--header"  >
+		<customHeader>
+			<Toolbar>
+				<Button type="Back" press="onNavBack" />
+				<ToolbarSpacer/>
+				<Title text="Employee details" level="H2"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://edit" type="Transparent" press="onEdit" ariaLabelledBy="editButtonLabel"/>
+			</Toolbar>
+			</customHeader>
+		<!-- this CSS class add a standard spacing to all the page content -->
+		<content>
+			<ObjectHeader
+		id="idPage"
+		responsive="true"
+		fullScreenOptimized="true"
+		icon="https://i.pinimg.com/originals/45/c6/fa/45c6fa7497483903859ad23fcb634afd.png"
+		intro="{employee>empId}"
+		title="{employee>name}"
+		titlePress="handleTitlePress"		
+		backgroundDesign="Translucent"
+		class="sapUiResponsivePadding--header"
+		 >
+		<ObjectAttribute
+			title="Employee Name"
+			text="{employee>name}"
+			/>			
+		<ObjectAttribute
+			title="Address"
+			text="{employee>address},{employee>city}"/>
+		<ObjectAttribute
+			title="State/Pincode"
+			text="{employee>state},{employee>pincode}"/>
+		<ObjectAttribute
+			title="Mobile No."
+			text="{employee>mobileNumber}"
+			active="true"/>
+		<ObjectAttribute
+			title="Position"
+			text="{employee>position}"/>
+		<ObjectAttribute
+			title="Email ID"
+			text="{employee>email}"/>	
+		<statuses>
+					<ObjectStatus title="Onboarding Status" text="{employee>status}" state="{= ${employee>status} === 'Approve' ? 'Success' : ${employee>status} === 'Pending' ? 'Warning' : 'Error' }" />
+        </statuses>	
+		<statuses>
+					<ObjectStatus title="HR Status" text="{employee>hrStatus}" state="{= ${employee>hrStatus} === 'Approve' ? 'Success' : ${employee>hrStatus} === 'Pending' ? 'Warning' : 'Error' }" />
+        </statuses>		
+		<statuses>
+					<ObjectStatus title="Finance Status" text="{employee>finStatus}" state="{= ${employee>finStatus} === 'Approve' ? 'Success' : ${employee>finStatus} === 'Pending' ? 'Warning' : 'Error' }" />
+        </statuses>	
+		<statuses>
+					<ObjectStatus title="IT Status" text="{employee>itStatus}" state="{= ${employee>itStatus} === 'Approve' ? 'Success' : ${employee>itStatus} === 'Pending' ? 'Warning' : 'Error' }" />
+        </statuses>	
+		<statuses>
+					<ObjectStatus title="Team Lead/Manager Status" text="{employee>tlStatus}" state="{= ${employee>tlStatus} === 'Approve' ? 'Success' : ${employee>tlStatus} === 'Pending' ? 'Warning' : 'Error' }" />
+        </statuses>		
+		
+		<headerContainer>
+			<!-- <IconTabBar
+				id="itb1"
+				selectedKey="key3"
+				upperCase="true"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						key="info"
+						icon="sap-icon://hint">
+						<Text text="Info content goes here ..." />
+						
+					</IconTabFilter>
+					<IconTabFilter
+						key="attachments"
+						icon="sap-icon://attachment"
+						count="3">
+						<Text text="Attachments go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						key="notes"
+						icon="sap-icon://notes"
+						count="12">
+						<Text text="Notes go here ..." />
+					</IconTabFilter>
+					<IconTabFilter
+						key="people"
+						icon="sap-icon://group">
+						<Text text="People content goes here ..." />
+					</IconTabFilter>
+				</items>
+			</IconTabBar> -->
+		</headerContainer>
+	</ObjectHeader>
+			<IconTabBar
+				expanded="{device>/isNoPhone}"
+				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						key="info"
+						text="Info">
+						<f:SimpleForm
+							layout="ResponsiveGridLayout" >
+							<f:title>
+								<core:Title text="A Form" />
+							</f:title>
+							<Label text="Label"/>
+							<Text text="Value"/>
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter
+						key="attachments"
+						text="Attachments">
+						<List headerText="A List" showSeparators="Inner" >
+						</List>
+					</IconTabFilter>
+					<IconTabFilter
+						key="notes"
+						text="Notes">
+						<FeedInput />
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
 
-   </headerContent>
-      <ObjectHeader intro="Employee ID" title="{employeeModel>/Employee_Id}" />
-
-      <f:Card class="sapUiMediumMargin" width="40%" height="auto">
-         <f:header>
-            <card:Header title="{employeeModel>/Employee_Full_Name}" subtitle="{employeeModel>/Employee_Department_ID}" iconSrc="sap-icon://employee-pane" />
-         </f:header>
-         <f:content 
-		  >
-            
-            <VBox>
-               <ObjectAttribute title="First Name" text="{employeeModel>/Employee_First_Name}" class="sapUiSmallMargin" />
-               <ObjectAttribute title="Last Name" text="{employeeModel>/Employee_Last_Name}"  class="sapUiSmallMargin"/>
-               <ObjectAttribute title="Full Name" text="{employeeModel>/Employee_Full_Name}" class="sapUiSmallMargin" />
-               <ObjectAttribute title="Phone Number" text="{employeeModel>/Employee_Phone_Number}" class="sapUiSmallMargin" />
-               <ObjectAttribute title="Employee Department " text="{employeeModel>/Employee_Department_ID}" class="sapUiSmallMargin" />
-               
-            </VBox>
-			
-         </f:content>
-		 
-      </f:Card>
-   </Page>
+			<f:SimpleForm
+				layout="ResponsiveGridLayout"
+				class="sapUiForceWidthAuto sapUiResponsiveMargin" >
+				<f:title>
+					<core:Title text="A Form" />
+				</f:title>
+				<Label text="Label"/>
+				<Text text="Value"/>
+			</f:SimpleForm>
+			<List headerText="A List" backgroundDesign="Translucent" width="auto" class="sapUiResponsiveMargin"/>
+			<!-- <Table headerText="A Table" width="auto" class="sapUiResponsiveMargin"/>
+			<Panel headerText="A Panel" width="auto" class="sapUiResponsiveMargin"/> -->
+		</content>
+	</Page>
 </mvc:View>

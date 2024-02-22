@@ -9,24 +9,29 @@ Content-Type: application/json
 
 
 {  
-    "empId":2,
-    "firstName":"Ankit",
-    "lastName":"verma",
-    "mobileNumber":"8781920364",
+    "empId":1,
+    "firstName":"Shubham",
+    "lastName":"kumar",
+    "mobileNumber":"7985919618",
     "address":"Marathalli",
     "city":"Bangalore",
     "state":"Karnataka",
-    "pincode":"560035"
+    "pincode":"560036"
 }
 
 ###
 
-PATCH http://localhost:4004/odata/v4/catalog/Employees/1
+PATCH  http://localhost:4004/odata/v4/catalog/Employees/1
 Content-Type: application/json
 
 
 {
-  "pincode":"560036"
+ 
+    "status":"Pending",
+    "position":null,
+    "email":null,
+    "hrStatus":"Pending"
+
 }
 
 ###
