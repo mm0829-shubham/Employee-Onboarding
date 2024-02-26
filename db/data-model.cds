@@ -23,6 +23,7 @@ entity Employees {
   Draft='Draft'
 } default 'Pending';
   email:String;
+  mmId:String;
   position:String;
   salaryDetails:String;
   laptop:Integer;

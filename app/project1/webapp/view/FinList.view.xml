@@ -1,0 +1,32 @@
+<mvc:View controllerName="project1.controller.FinList" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+    
+  <Panel>
+
+   <headerToolbar>
+               <Toolbar>
+                  <Label id="tableHeader" text="Employee List"/>
+                  <ToolbarSpacer />
+                  <SearchField id="searchField" width="auto" search="onSearchEmp" />
+               </Toolbar>
+    </headerToolbar>
+  
+    <List
+       id="empList"
+        items="{path: 'employee>/Employees'}" 
+    >
+        <ObjectListItem title="{employee>empId}" type="Active" press="onPressItEmployee">
+            
+            <attributes>
+                <ObjectAttribute title="Employee Name" text="{employee>name}" />
+                <!-- IT Status
+                <ObjectAttribute title="IT Status" text="{employee>itStatus}" /> -->
+                <!-- Finance Status -->
+                <ObjectAttribute title="Finance Status" text="{employee>finStatus}" />
+                <!-- Manager Status -->
+                <!-- <ObjectAttribute title="Team Lead Status" text="{employee>tlStatus}" /> -->
+            </attributes>
+        </ObjectListItem>
+    </List>
+</Panel>
+
+</mvc:View>

@@ -1,5 +1,5 @@
 
-GET http://localhost:4004/odata/v4/catalog/Employees
+GET http://localhost:4004/odata/v4/catalog/Employees/1
 
 ###
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ###
 
-PATCH  http://localhost:4004/odata/v4/catalog/Employees/1
+PATCH  http://localhost:4004/odata/v4/catalog/Employees/('1')
 Content-Type: application/json
 
 

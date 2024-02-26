@@ -1,0 +1,236 @@
+<mvc:View
+    height="100%"
+    controllerName="project1.controller.FinListDetails"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+	xmlns="sap.suite.ui.commons.networkgraph"
+>
+    <m:Page
+        id="idPage1"
+        title="page"
+        class="sapUiResponsivePadding--header"
+    >
+        <m:customHeader>
+            <m:Toolbar>
+                <m:Button
+                    type="Back"
+                    press="onNavBack"
+                />
+                <m:ToolbarSpacer />
+                <m:Title
+                    text="Employee details"
+                    level="H2"
+                />
+                <m:ToolbarSpacer />
+                <!-- <m:Button
+                    icon="sap-icon://edit"
+                    type="Transparent"
+                    press="onEdit"
+                    ariaLabelledBy="editButtonLabel"
+                /> -->
+            </m:Toolbar>
+        </m:customHeader>
+        <!-- this CSS class add a standard spacing to all the page content -->
+        <m:content>
+            <m:ObjectHeader
+                id="idPage"
+                responsive="true"
+                fullScreenOptimized="true"
+                icon="https://i.pinimg.com/originals/45/c6/fa/45c6fa7497483903859ad23fcb634afd.png"
+                title="{employee>name}"
+                intro="{employee>mmId}"
+                titlePress="handleTitlePress"
+                backgroundDesign="Translucent"
+                class="sapUiResponsivePadding--header"
+                
+            >
+            	<!-- <m:ObjectAttribute
+			title="IT Department Status"
+			text="{/employee/itStatus}"/> -->
+
+                <m:statuses>
+
+                       <m:ObjectStatus
+                        title="Onboarding Status"
+                        text="{employee>status}"
+                        state="{= ${employee>status} === 'Approve' ? 'Success' : ${employee>status} === 'Pending' ? 'Warning' : 'Error' }"
+                    />
+                    
+                </m:statuses>
+                
+                <m:statuses>
+                    <m:ObjectStatus
+                        title="Finance Status"
+                        text="{employee>finStatus}"
+                        state="{= ${employee>finStatus} === 'Approve' ? 'Success' : ${employee>finStatus} === 'Pending' ? 'Warning' : 'Error' }"
+                    />
+                </m:statuses>
+                <m:headerContainer>
+                
+                </m:headerContainer>
+            </m:ObjectHeader>
+            <m:IconTabBar
+                expanded="{employee>/Employees}"
+                class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
+            >
+                <m:items>
+                    <m:IconTabFilter
+                        key="empStatus"
+                        text="Employee Section"
+                    >
+                          <m:FlexBox justifyContent="End" width="100%" >
+        <!-- Content on the left side (if any) -->
+        <m:Button 
+         icon="sap-icon://edit"
+                    type="Transparent"
+                    press="onEdit"
+                    ariaLabelledBy="editButtonLabel"
+                    class="sapUiSmallMarginBegin" />
+    </m:FlexBox>
+                        <f:SimpleForm layout="ResponsiveGridLayout">
+                            <f:title>
+                                <core:Title text="Employee Details" />
+                            </f:title>
+                            <m:Label text="Employee name" />
+                            <m:Text text="{employee>name}" />
+                            <m:Label text="Mobile number" />
+                            <m:Text text="{employee>mobileNumber}" />
+                            <m:Label text="Email ID" />
+                            <m:Text text="{employee>email}" />
+                            <m:Label text="Address" />
+                            <m:Text text="{employee>address},{employee>city}" />
+                            <m:Label text="State/Pincode" />
+                            <m:Text text="{employee>state},{employee>pincode}" />
+                            <!-- <m:Label text="Position" />
+                            <m:Text text="{employee>position}" /> -->
+                            <!-- <m:Label text="Department" />
+                            <m:Text text="{employee>department}" /> -->
+                            <m:Label text="Salary Details" />
+                            <m:Text text="{employee>salaryDetails}" />
+                            <!-- <m:Label text="Laptop Required" />
+                            <m:Text text="{employee>laptop}" />
+                            <m:Label text="Mouse Required" />
+                            <m:Text text="{employee>mouse}" /> -->
+                        </f:SimpleForm>
+                    </m:IconTabFilter>
+                    <m:IconTabFilter
+                        key="netwaorkGraph"
+                        text="Network Graph Section"
+                    >
+                      
+   <!-- ///////////////////////Network Graph Section////////////////////////////// -->
+
+    <Graph
+		enableWheelZoom="false"
+        id="graph"
+        orientation="TopBottom"
+        height="100%"
+        width="100%"
+        nodes="{graph>/nodes}"
+        lines="{graph>/lines}">
+        <nodes>
+            <Node
+                    key="{graph>key}"
+                    title="{graph>title}"
+                    icon="{graph>icon}"
+                    attributes="{path:'graph>/nodes', templateShareable:true}"
+                    actionButtons="{path:'graph>actionButtons', templateShareable:true}"
+                    showActionLinksButton="{graph>actionlinksbutton}"
+                    showDetailButton="{graph>detailbutton}"
+                    showExpandButton="{graph>expandbutton}"
+                    status="{graph>status}"
+                    press="nodePress">
+                <attributes>
+                    <ElementAttribute
+                        label="{graph>/label}"
+                        value="{graph>/value}"/>
+                </attributes>
+                <actionButtons>
+                    <ActionButton
+                        icon="{graph>icon}"
+                        title="Custom button"
+                        press="buttonPress" />
+                </actionButtons>
+            </Node>
+        </nodes>
+        <lines>
+            <Line
+                    from="{graph>from}"
+                    to="{graph>to}"
+                    press="linePress">
+            </Line>
+        </lines>
+    </Graph>
+
+
+
+
+
+
+<!-- ///////////////////////Network Graph Section////////////////////////////// -->
+            
+                    </m:IconTabFilter>
+                    <m:IconTabFilter
+                        key="comments"
+                        text="Comments Section"
+                    >
+                        <m:FeedInput
+                            post="onPost"
+                            icon="sap-icon://customer"
+                            class="sapUiSmallMarginTopBottom"
+                        />
+                        <m:List
+                            showSeparators="Inner"
+                            items="{feedModel>/EntryCollection}"
+                        >
+                            <m:FeedListItem
+                                sender="{Author}"
+                                icon="{AuthorPicUrl}"
+                                senderPress="onSenderPress"
+                                iconPress="onIconPress"
+                                info="{Type}"
+                                timestamp="{Date}"
+                                text="{Text}"
+                                convertLinksToAnchorTags="All"
+                            />
+                        </m:List>
+                    </m:IconTabFilter>
+                </m:items>
+            </m:IconTabBar>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+            <!-- <f:SimpleForm
+				layout="ResponsiveGridLayout"
+				class="sapUiForceWidthAuto sapUiResponsiveMargin" >
+				<f:title>
+					<core:Title text="A Form ugdgdgjdgkd" />
+				</f:title>
+				<Label text="Label"/>
+				<Text text="Value"/>
+			</f:SimpleForm> -->
+            <!-- <List headerText="A List " backgroundDesign="Translucent" width="auto" class="sapUiResponsiveMargin"/> -->
+            <!-- <Table headerText="A Table" width="auto" class="sapUiResponsiveMargin"/>
+			<Panel headerText="A Panel" width="auto" class="sapUiResponsiveMargin"/> -->
+        </m:content>
+    </m:Page>
+</mvc:View>

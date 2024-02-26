@@ -68,10 +68,18 @@
           "bundleName": "project1.i18n.i18n"
         }
       },   
+      "feedModel":{
+        "uri": "model/feed.json",
+        "type":"sap.ui.model.json.JSONModel"
+      },
       "employeeModel":{
         "uri":"model/employeeModel.json",
         "type": "sap.ui.model.json.JSONModel"
       },  
+      "graph":{
+        "uri":"model/graph.json",
+        "type": "sap.ui.model.json.JSONModel"
+      }, 
       "employee": {    
         "dataSource": "mainService",
         "preload": true,
@@ -109,10 +117,73 @@
           ]
         },
         {
+          "name": "JuniorHrList",
+          "pattern": "JuniorHrList",
+          "target": [
+            "TargetJuniorHrList"
+          ]
+        },
+        {
           "name": "EmployeeDetails",
           "pattern": "Employee/{EmployeeId}",
           "target": [
             "TargetEmployeeDetails"
+          ]
+        },
+        {
+          "name": "ITList",
+          "pattern": "ITList",
+          "target": [
+            "TargetITList"
+          ]
+        },
+        {
+          "name": "ITListDetails",
+          "pattern": "ITListDetails/{ITListDetailsId}",
+          "target": [
+            "TargetITListDetails"
+          ]
+        },
+        {
+          "name": "FinList",
+          "pattern": "FinList",
+          "target": [
+            "TargetFinList"
+          ]
+        },
+        {
+          "name": "FinListDetails",
+          "pattern": "FinListDetails/{FinListDetailsId}",
+          "target": [
+            "TargetFinListDetails"
+          ]
+        },
+        {
+          "name": "TeamLeadList",
+          "pattern": "TeamLeadList",
+          "target": [
+            "TargetTeamLeadList"
+          ]
+        },
+        {
+          "name": "TeamLeadListDetails",
+          "pattern": "TeamLeadListDetails/{TeamLeadListDetailsId}",
+          "target": [
+            "TargetTeamLeadListDetails"
+          ]
+        },
+        {
+          "name": "HeadHrList",
+          "pattern": "HeadHrList",
+          "target": [
+            "TargetHeadHrList"
+          ]
+        },
+        {
+          "name": "HeadHrListDetails",
+          "pattern": "HeadHrListDetails/{HeadHrListDetailsId}",
+          "target": [
+            "TargetHeadHrListDetails"
           ]
         }
       ],
@@ -124,14 +195,78 @@
           "viewId": "View1",
           "viewName": "View1"
         },
+        "TargetJuniorHrList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "JuniorHrList",
+          "viewName": "JuniorHrList"
+        },
         "TargetEmployeeDetails": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
           "viewId": "EmployeeDetails",
           "viewName": "EmployeeDetails"
-        }
+        },
+        "TargetITList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ITList",
+          "viewName": "ITList"
+        },
+       "TargetITListDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ITListDetails",
+          "viewName": "ITListDetails"
+        },
+        "TargetFinList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "FinList",
+          "viewName": "FinList"
+        },
+        "TargetFinListDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "FinListDetails",
+          "viewName": "FinListDetails"
+        },
+        "TargetTeamLeadList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TeamLeadList",
+          "viewName": "TeamLeadList"
+        },
+        "TargetTeamLeadListDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TeamLeadListDetails",
+          "viewName": "TeamLeadListDetails"
+        },        
+      "TargetHeadHrList": {
+        "viewType": "XML",
+        "transition": "slide",
+        "clearControlAggregation": false,
+        "viewId": "HeadHrList",
+        "viewName": "HeadHrList"
+      },
+      "TargetHeadHrListDetails": {
+        "viewType": "XML",
+        "transition": "slide",
+        "clearControlAggregation": false,
+        "viewId": "HeadHrListDetails",
+        "viewName": "HeadHrListDetails"
       }
+      }
+     
     },
     "rootView": {
       "viewName": "project1.view.App",

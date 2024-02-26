@@ -1,48 +1,87 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent",    
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
-], function(Controller, UIComponent,Filter,FilterOperator) {
-    "use strict";
+    "sap/m/MessageBox",
+    "sap/ui/model/json/JSONModel"
+],
+    /**
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     */
+    function (Controller, MessageBox, JSONModel) {
+        "use strict";
 
-    return Controller.extend("project1.controller.View1", {
-        onInit() {
-           },
+        return Controller.extend("project1.controller.View1", {
+            onInit: function () {
 
-        onPressEmployee: function(oEvent) {
-          
-            let sEmployeeId = oEvent.getSource().getTitle();
-            this.getOwnerComponent().getRouter().navTo("EmployeeDetails", {
-                EmployeeId: sEmployeeId,
-            });
-        },
+            },
 
-        onSearchEmp: function(oEvent) {
-            const sQuery = oEvent.getParameter("query").trim();
-            const aFilters = [];
-        
-            if (sQuery) {
-                // If search query is provided
-                const iQuery = parseInt(sQuery);
-                if (!isNaN(iQuery)) {
-                    // If the search query can be parsed to an integer
-                    const oEmpIdFilter = new sap.ui.model.Filter("empId", sap.ui.model.FilterOperator.EQ, iQuery);       
-                    aFilters.push(oEmpIdFilter);
-                } else {
-                    // If the search query is not a valid integer, search by name instead
-                    const oEmpNameFilter = new sap.ui.model.Filter("name", sap.ui.model.FilterOperator.Contains, sQuery);
-                    aFilters.push(oEmpNameFilter);
-                }
-            }
-        
-            // Apply filters to the list binding
-            const oList = this.byId("empList");
-            const oBinding = oList.getBinding("items");
-            oBinding.filter(aFilters);
-        }
-        
-       
+            //Login
+            onLoginPress: function () {
+                var that = this;
+                var empid = this.getView().byId("empIdInput")._lastValue;
+                // var EmpPassword = this.getView().byId("passwordInput").getValue();
+                var emppassword = this.getView().byId("passwordInput")._lastValue;
+                // console.log(this.getView().byId("passwordInput")._lastValue);
 
+                // Load the user data from the JSON file
+                $.ajax({
+                    url: "https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees",
+                    type: "GET",
+                    dataType: "json",
+                    success: function () {
+                        // console.log(data);                        
+                        //    console.log(validCredentials);
+                        if (empid && emppassword) {
+                            if (empid == 1 && emppassword == 123) {
+                                MessageBox.success("Login successfull ")
+                                // let Emp_Id = e.getSource().getTitle();
+                                // console.log(Emp_Id);
+                                let oRouter = that.getOwnerComponent().getRouter();
+                                oRouter.navTo("JuniorHrList");
+                            }
+                            else if (empid == 2 && emppassword == 123) {
+                                MessageBox.success("Login successfull ")
+                                // let Emp_Id = e.getSource().getTitle();
+                                // console.log(Emp_Id);
+                                let oRouter = that.getOwnerComponent().getRouter();
+                                oRouter.navTo("ITList");
+                            }
+                            else if (empid == 3 && emppassword == 123) {
+                                MessageBox.success("Login successfull ")
+                                // let Emp_Id = e.getSource().getTitle();
+                                // console.log(Emp_Id);
+                                let oRouter = that.getOwnerComponent().getRouter();
+                                oRouter.navTo("FinList");
+                            }
+                            else if (empid == 4 && emppassword == 123) {
+                                MessageBox.success("Login successfull ")
+                                // let Emp_Id = e.getSource().getTitle();
+                                // console.log(Emp_Id);
+                                let oRouter = that.getOwnerComponent().getRouter();
+                                oRouter.navTo("TeamLeadList");
+                            }
+                            else if (empid == 5 && emppassword == 123) {
+                                MessageBox.success("Login successfull ")
+                                // let Emp_Id = e.getSource().getTitle();
+                                // console.log(Emp_Id);
+                                let oRouter = that.getOwnerComponent().getRouter();
+                                oRouter.navTo("HeadHrList");
+                            }
+
+                            else {
+                                MessageBox.error("Login failed")
+                            }
+
+
+                        }
+                        else {
+                            MessageBox.error("UserId and Password is Required!")
+                        }
+
+                    },
+                    error: function (error) {
+                        MessageBox.error("Error fetching employee data:", error);
+                    }
+                });
+            },
+        });
     });
-});

@@ -1,32 +1,20 @@
-<mvc:View controllerName="project1.controller.View1" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-    
-  <Panel>
+<mvc:View xmlns:form="sap.ui.layout.form" controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+     <Page id="page" title="{i18n>title}">
+        <content>
+           <VBox id="_IDGenVBox1" justifyContent="Center" alignItems="Center" width="100%" class="sapUiMediumMargin">
+                <FlexBox id="_IDGenFlexBox1" justifyContent="SpaceBetween" alignItems="Center" width="30rem">
+                    <Label id="_IDGenLabel1" text="Employee ID" />
+                    <Input id="empIdInput" type="Text" width="100%" valueStateText="Please enter Employee ID" />
 
-   <headerToolbar>
-               <Toolbar>
-                  <Label id="tableHeader" text="Employee List"/>
-                  <ToolbarSpacer />
-                  <SearchField id="searchField" width="auto" search="onSearchEmp" />
-               </Toolbar>
-    </headerToolbar>
-  
-    <List
-       id="empList"
-        items="{path: 'employee>/Employees'}" 
-    >
-        <ObjectListItem title="{employee>empId}" type="Active" press="onPressEmployee">
-            
-            <attributes>
-                <ObjectAttribute title="Employee Name" text="{employee>name}" />
-                <!-- IT Status -->
-                <ObjectAttribute title="IT Status" text="{employee>itStatus}" />
-                <!-- Finance Status -->
-                <ObjectAttribute title="Finance Status" text="{employee>finStatus}" />
-                <!-- Manager Status -->
-                <ObjectAttribute title="Team Lead Status" text="{employee>tlStatus}" />
-            </attributes>
-        </ObjectListItem>
-    </List>
-</Panel>
-
+                </FlexBox>
+                <FlexBox id="_IDGenFlexBox2" justifyContent="SpaceBetween" alignItems="Center" width="30rem">
+                    <Label id="_IDGenLabel2" text="Password" />
+                    <Input id="passwordInput" type="Password" width="100%" valueStateText="Please enter Password" />
+                </FlexBox>
+                <Button id="_IDGenButton1" text="Login" press=".onLoginPress" width="10rem"/>
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>

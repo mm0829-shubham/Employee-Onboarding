@@ -1,0 +1,166 @@
+{
+	"nodes": [
+		{
+			"key": 1,
+			"title": "Employee Status",
+			"icon": "sap-icon://add-employee",
+			"status": "Success",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "4 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "4 Days"
+				}
+			]
+		},
+		{
+			"key": 2,
+			"title": "Junior HR Status",
+			"icon": "sap-icon://hr-approval",
+			"status": "Success",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "3 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "3 Days"
+				}
+			]
+		},
+		{
+			"key": 3,
+			"title": "IT Department Status",
+			"icon": "sap-icon://action-settings",
+			"status": "Warning",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "2 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "2 Days"
+				}
+			]
+		},
+		{
+			"key": 4,
+			"title": "Finance Department Status",
+			"icon": "sap-icon://monitor-payments",
+			"status": "Warning",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "3 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "3 Days"
+				}
+			]
+		},
+		{
+			"key": 5,
+			"title": "Team Lead / Manager Status",
+			"icon": "sap-icon://manager",
+			"status": "Warning",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "3 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "3 Days"
+				}
+			]
+		},
+		{
+			"key": 6,
+			"title": "Head HR Status",
+			"icon": "sap-icon://kpi-managing-my-area",
+			"status": "Error",
+			"attributes": [
+				{
+					"label": "MRP Area",
+					"value": "1010"
+				},
+				{
+					"label": "LT",
+					"value": "4 Days"
+				},
+				{
+					"label": "DLT",
+					"value": "4 Days"
+				}
+			]
+		}	
+		
+		
+		
+	],
+	"lines": [
+		{
+			"from": 1,
+			"to": 2
+		},		
+		{
+			"from": 2,
+			"to": 4
+		},
+		{
+			"from": 2,
+			"to": 3
+		},
+		{
+			"from": 2,
+			"to": 5
+		},
+		{
+			"from": 3,
+			"to": 6
+		},
+		{
+			"from": 4,
+			"to": 6
+		},
+		{
+			"from": 5,
+			"to": 6
+		},		
+		{
+			"from": 6,
+			"to": 2
+		},
+		{
+			"from": 2,
+			"to": 6
+		}
+			
+	]
+}

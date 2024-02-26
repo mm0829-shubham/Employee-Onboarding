@@ -15,7 +15,7 @@
                 type="Text"
             />
 
-            <Label text="Position" />
+            <!-- <Label text="Position" />
             <Select
                 id="position"
                 selectedKey="{employeeModel>/EditEmployee/position}"
@@ -37,37 +37,33 @@
                     key="Position4"
                     text="Senior Developer"
                 />
-            </Select>   
+            </Select>    -->
 
             <Label text="HR Status" />
             <Select
                 id="hrStatus"
-                selectedKey="{employeeModel>/EditEmployee/hrStatus}"
+                selectedItem="{employeeModel>/EditEmployee/hrStatus}"
                 change="onHrStatusChange"
             >
-            <core:Item
-                    key="hrStatusPosition1"
-                    text=""
+                <core:Item
+                    key="hrStatusPosition3"
+                    text="Pending"
                 />
                 <core:Item
                     key="hrStatusPosition2"
                     text="Approve"
                 />
                 <core:Item
-                    key="hrStatusPosition3"
-                    text="Pending"
-                />
-                <core:Item
                     key="hrStatusPosition4"
                     text="Reject"
                 />
-            </Select> 
+            </Select>
         </VBox>
 
         <beginButton>
             <Button
                 text="Save"
-                press="onSaveEmployee"
+                press=".onSaveEmployee"
             />
         </beginButton>
 
