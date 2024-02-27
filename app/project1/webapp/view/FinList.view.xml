@@ -17,6 +17,8 @@
         <ObjectListItem title="{employee>empId}" type="Active" press="onPressItEmployee">
             
             <attributes>
+            
+                <ObjectAttribute title="Employee ID" text="{employee>mmId}" />
                 <ObjectAttribute title="Employee Name" text="{employee>name}" />
                 <!-- IT Status
                 <ObjectAttribute title="IT Status" text="{employee>itStatus}" /> -->

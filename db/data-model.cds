@@ -26,8 +26,8 @@ entity Employees {
   mmId:String;
   position:String;
   salaryDetails:String;
-  laptop:Integer;
-  mouse:Integer;
+  laptop:String;
+  mouse:String;
   department:String;
   hrStatus:String  enum {
   Pending = 'Pending';

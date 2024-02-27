@@ -8,42 +8,52 @@
         class="sapUiPopupWithPadding"
     >
         <VBox>
-            <Label text="Email ID" />
-            <Input
-                id="emailId"
-                value="{employeeModel>/EditEmployee/email}"
-                type="Text"
-            />
-
-            <!-- <Label text="Position" />
+            <Label text="Laptop Requires" />
             <Select
-                id="position"
-                selectedKey="{employeeModel>/EditEmployee/position}"
-                change="onPositionChange"
+                id="laptop"
+                selectedKey ="{employeeModel>/EditEmployee/laptop}" 
+                change="onLaptopRequired"
             >
             <core:Item
-                    key="Position1"
-                    text=""
+                    key="Select"
+                    text="Select"
                 />
                 <core:Item
-                    key="Position2"
-                    text="Trainee"
+                    key=" "
+                    text="0"
                 />
                 <core:Item
-                    key="Position3"
-                    text="Developer"
+                    key="1"
+                    text="1"
+                />
+                
+            </Select>
+            <Label text="Mouse Requires" />
+            <Select
+                id="mouse"
+                selectedKey ="{employeeModel>/EditEmployee/mouse}" 
+                change="onMouseRequires"
+            >
+            <core:Item
+                    key="Select"
+                    text="Select"
                 />
                 <core:Item
-                    key="Position4"
-                    text="Senior Developer"
+                    key=" "
+                    text="0"
                 />
-            </Select>    -->
+                <core:Item
+                    key="1"
+                    text="1"
+                />
+                
+            </Select>
 
-            <Label text="HR Status" />
+            <Label text="IT Status" />
             <Select
                 id="hrStatus"
-                selectedKey ="{employeeModel>/EditEmployee/hrStatus}" 
-                change="onHrStatusChange"
+                selectedKey ="{employeeModel>/EditEmployee/itStatus}" 
+                change="onItStatusChange"
             >
             <core:Item
                     key="Select"
@@ -67,7 +77,7 @@
         <beginButton>
             <Button
                 text="Save"
-                press=".onSaveEmployee"
+                press=".onItSaveEmp"
             />
         </beginButton>
 

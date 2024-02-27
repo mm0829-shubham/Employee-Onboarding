@@ -59,9 +59,23 @@ modules:
       - project1.zip
       name: project1
       target-path: resources/
+    - artifacts:
+      - employeeregister.zip
+      name: employeeregister
+      target-path: resources/
 - name: project1
   type: html5
   path: app/project1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: employeeregister
+  type: html5
+  path: app/employeeregister
   build-parameters:
     build-result: dist
     builder: custom

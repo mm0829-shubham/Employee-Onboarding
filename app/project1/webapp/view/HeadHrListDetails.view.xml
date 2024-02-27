@@ -106,7 +106,7 @@
                 <m:items>
                     <m:IconTabFilter
                         key="empStatus"
-                        text="Employee Section"
+                        text="General"
                     >
                           <m:FlexBox justifyContent="End" width="100%" >
         <!-- Content on the left side (if any) -->
@@ -145,7 +145,7 @@
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="netwaorkGraph"
-                        text="Network Graph Section"
+                        text="WorkFlow"
                     >
                         <!-- ///////////////////////Network Graph Section////////////////////////////// -->
 
@@ -200,7 +200,7 @@
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="comments"
-                        text="Comments Section"
+                        text="Comments"
                     >
                         <m:FeedInput
                             post="onPost"

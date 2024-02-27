@@ -10,7 +10,7 @@ sap.ui.define([
 	"sap/suite/ui/commons/networkgraph/util/Dijkstra"
   
   
-], function (Controller, JSONModel, MessageBox,Fragment,ComparisonMicroChart,ComparisonMicroChartData,OverflowToolbarButton,Dijkstra) {
+], function (Controller, JSONModel,DataType,Fragment,MessageBox,ComparisonMicroChart,ComparisonMicroChartData,OverflowToolbarButton,Dijkstra) {
   "use strict";
 
   var STATUS_ICON = "sap-icon://notification-2",
@@ -215,12 +215,13 @@ function fixNodeState(oNode) {
             success: (data) => {
                 MessageBox.show("Employee data updated successfully!");
                 // Call onCancelEmployee() here since the AJAX request is successful
-                this.onCancelEmployee();
+                
             },
             error: (error) => {
                 console.error(error);
             },
-        });       
+        }); 
+        this.onCancelEmployee();      
     }
 },
 

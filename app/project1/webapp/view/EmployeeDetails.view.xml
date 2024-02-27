@@ -129,7 +129,7 @@
                 <m:items>
                     <m:IconTabFilter
                         key="empStatus"
-                        text="Employee Section"
+                        text="General"
                     >
                         <m:FlexBox
                             justifyContent="End"
@@ -161,7 +161,7 @@
                             <m:Text
                                 text="{employee>state},{employee>pincode}"
                             />
-                            <m:Label text="Position" />
+                            <!-- <m:Label text="Position" />
                             <m:Text text="{employee>position}" />
                             <m:Label text="Department" />
                             <m:Text text="{employee>department}" />
@@ -170,12 +170,12 @@
                             <m:Label text="Laptop Required" />
                             <m:Text text="{employee>laptop}" />
                             <m:Label text="Mouse Required" />
-                            <m:Text text="{employee>mouse}" />
+                            <m:Text text="{employee>mouse}" /> -->
                         </f:SimpleForm>
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="netwaorkGraph"
-                        text="Network Graph Section"
+                        text="WorkFlow"
                     >
   <!-- ///////////////////////Network Graph Section////////////////////////////// -->
 
@@ -229,7 +229,7 @@
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="comments"
-                        text="Comments Section"
+                        text="Comments"
                     >
                         <m:FeedInput
                             post="onPost"

@@ -23,7 +23,8 @@
         "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy EmployeeOnBoarding --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-employeeregister": "cds watch --open employeeregister/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {

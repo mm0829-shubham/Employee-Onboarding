@@ -7,7 +7,7 @@ sap.ui.define([
       "sap/suite/ui/microchart/ComparisonMicroChart",
       "sap/suite/ui/microchart/ComparisonMicroChartData"
     
-  ], function (Controller, JSONModel, MessageBox,Fragment,ComparisonMicroChart,ComparisonMicroChartData) {
+  ], function (Controller, JSONModel,DataType,Fragment,MessageBox,ComparisonMicroChart,ComparisonMicroChartData) {
     "use strict";
   
     return Controller.extend("project1.controller.TeamLeadListDetails", {
@@ -52,7 +52,7 @@ sap.ui.define([
         if (!this.pDialog) {
           this.pDialog = Fragment.load({
             id: this.getView().getId(),
-            name: "project1.view.EditEmployee",
+            name: "project1.view.TLEdit",
             controller: this,
           }).then((oDialog) => {
             this.getView().addDependent(oDialog);
@@ -94,59 +94,38 @@ sap.ui.define([
   
     
   
-    onSaveEmployee: function(oEvent) {
-      // console.log(oEvent.getParameter("arguments").EmployeeId);
+    onTlSaveEmp: function(oEvent) {
       var sEmployeeId = this._empId;
-      const url = `${this.getOwnerComponent().getModel("employee").getServiceUrl()}Employees/('${sEmployeeId}')`;  
-      var oModel = this.getView().getModel("employeeModel");
-      var sEmailId = oModel.getProperty("/EditEmployee/email");
-      var sSelectedHrStatus = oModel.getProperty("/EditEmployee/hrStatus");    
-      var smmId = oModel.getProperty("/EditEmployee/mmId");
+      var sSelectedTlStatus = this.getView().getModel("employeeModel").getProperty("/EditEmployee/tlStatus"); 
+      var sPosition = this.getView().getModel("employeeModel").getProperty("/EditEmployee/department"); 
+      var sDepartment = this.getView().getModel("employeeModel").getProperty("/EditEmployee/position"); 
+
       
-      // const sSelectedHrStatus = this.getView().byId("hrStatus").getSelectedKey();    
-      // const sEmailId = this.getView().byId("emailId").getSelectedKey();
-      // let mmId = this.getOwnerComponent().getModel("employee").getProperty("/MMId");
-    //   $.ajax({
-    //     method: "GET",
-    //     url: url,
-    //     contentType: "application/json",
-    //     data: JSON.stringify(),
-    //     success: () => {
-    //         MessageToast.show("Employee data updated successfully!");
-    //     },
-    //     error: (error) => {
-    //         console.error(error);
-    //     },
-    // });
-      if(!smmId){
-        smmId = "mm001";
-      }else{
-        smmId = "mm" + (parseInt(smmId.substring(2)) + 1);
-      }
       
-      if (sSelectedHrStatus&&sEmailId) {
-          const oData = {
-              email:sEmailId,
-              hrStatus:sSelectedHrStatus,
-              mmId:smmId
+      if (sSelectedTlStatus && sPosition && sDepartment) {
+          var oData = {
+            tlStatus: sSelectedTlStatus,
+            position: sPosition,
+            department: sDepartment
           };
+          
           $.ajax({
-                method:"PATCH",
-                url: url,
-                contentType: "application/json",
-                data: JSON.stringify(oData),
-                success: (data) => {
+              method: "PATCH",
+              url: `https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees/${sEmployeeId}`,
+              contentType: "application/json",
+              data: JSON.stringify(oData),
+              success: (data) => {
                   MessageBox.show("Employee data updated successfully!");
-  
-                },
-                error: (error) => {
-                    console.error(error);
-                },
-            });       
-        }
-    
-      this.onCancelEmployee();
-    },
+                  // Call onCancelEmployee() here since the AJAX request is successful
+                  
+              },
+              error: (error) => {
+                  console.error(error);
+              },
+          }); 
+          this.onCancelEmployee();      
+      }
+  },
   
       onCancelEmployee() {
         this.byId("editEmployee").close();

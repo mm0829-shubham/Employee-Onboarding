@@ -2,6 +2,15 @@
     "EditEmployee": {
         "email": "",
         "mmId": "",
-        "hrStatus": ""
+        "laptop":"",
+        "mouse":"",
+        "hrStatus": "",
+        "itStatus":"",
+        "finStatus":"",
+        "salaryDetails":"",
+        "tlStatus":"",
+        "department":"",
+        "position":"",
+        "status":""
     }
 }
