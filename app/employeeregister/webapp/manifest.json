@@ -43,7 +43,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.120.8",
       "libs": {
@@ -68,7 +68,11 @@
           "bundleName": "employeeregister.i18n.i18n"
         }
       },
-      "": {
+      "employeeModel":{
+        "uri":"model/employeeModel.json",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "employee": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {

@@ -177,9 +177,145 @@
                         key="netwaorkGraph"
                         text="WorkFlow"
                     >
-  <!-- ///////////////////////Network Graph Section////////////////////////////// -->
+                        <!-- ///////////////////////Network Graph Section////////////////////////////// -->
 
                         <Graph
+                            id="graph"
+                            enableWheelZoom="false"
+                        >
+                            <nodes>
+                                <Node
+                                    key="EmployeeStatus"
+                                    title="{employee>name}"
+                                    status="{employee>empFlowStatus}"
+                                    icon="sap-icon://add-employee"
+                                    class="customNode"
+                                    
+                                />
+                                <Node
+                                    key="JHRStatus"
+                                    title="Junior HR Status"
+                                    status="{employee>jrHrFlowStatus}"
+                                    icon="sap-icon://hr-approval"
+                                />
+
+                                <Node
+                                    key="ITStatus"
+                                    title="IT Department Status"
+                                    status="{employee>itFlowStatus}"
+                                    icon="sap-icon://action-settings"
+                                />
+                                <Node
+                                    key="FinanceStatus"
+                                    title="Finance Department Status"
+                                    status="{employee>finFlowStatus}"
+                                    icon="sap-icon://monitor-payments"
+                                />
+                                <Node
+                                    key="TLStatus"
+                                    title="Team Lead / Manager Status"
+                                    status="{employee>tlFlowStatus}"
+                                    icon="sap-icon://manager"
+                                />
+
+                                <Node
+                                    key="HeadHRStatus"
+                                    title="Head HR Status"
+                                    status="{employee>hHrFlowStatus}"
+                                    icon="sap-icon://kpi-managing-my-area"
+                                />
+                            </nodes>
+                            <lines>
+                                <Line
+                                    from="EmployeeStatus"
+                                    to="JHRStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="JHRStatus"
+                                    to="FinanceStatus"
+                                   
+                                />
+                                <Line
+                                    from="JHRStatus"
+                                    to="ITStatus"
+                                    
+                                />
+                                <Line
+                                    from="JHRStatus"
+                                    to="TLStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="FinanceStatus"
+                                    to="HeadHRStatus"
+                                   
+                                />
+                                <Line
+                                    from="ITStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+                                <Line
+                                    from="TLStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="JHRStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+                            </lines>
+                        </Graph>
+
+                        <!-- <mvc:script>
+        <script>
+            var graph = this.getView().byId("graph");
+            graph.getNodes().forEach(function(node) {
+                var status = node.getStatus();
+                var color;
+                switch(status) {
+                    case "Approved":
+                        color = "#00FF00"; // Green
+                        break;
+                    case "Pending":
+                        color = "#FFFF00"; // Yellow
+                        break;
+                    case "Rejected":
+                        color = "#FF0000"; // Red
+                        break;
+                    default:
+                        color = "#000000"; // Black (default color)
+                }
+                node.setColor(color);
+            });
+
+            graph.getLines().forEach(function(line) {
+                var status = line.getStatus();
+                var color;
+                switch(status) {
+                    case "Approved":
+                        color = "#00FF00"; // Green
+                        break;
+                    case "Pending":
+                        color = "#FFFF00"; // Yellow
+                        break;
+                    case "Rejected":
+                        color = "#FF0000"; // Red
+                        break;
+                    default:
+                        color = "#000000"; // Black (default color)
+                }
+                line.setColor(color);
+            });
+        </script>
+    </mvc:script> -->
+
+                        <!-- <Graph
                             enableWheelZoom="false"
                             id="graph"
                             orientation="TopBottom"
@@ -188,23 +324,56 @@
                             nodes="{graph>/nodes}"
                             lines="{graph>/lines}"
                         >
+
+                        	<statuses>
+			<Status key="CustomSuccess" title="Success" contentColor="sapUiCalendarColorToday" headerContentColor="sapUiCalendarColorToday"
+					borderColor="sapUiCalendarColorToday" selectedBackgroundColor="sapUiChartPaletteQualitativeHue10"
+					selectedBorderColor="sapUiChartPaletteQualitativeHue10" selectedContentColor="black"
+					hoverBorderColor="sapUiCalendarColorToday" hoverContentColor="black"
+					hoverBackgroundColor="sapUiCalendarColorToday"
+					legendColor="sapUiCalendarColorToday" useFocusColorAsContentColor="true"/>
+
+			<Status key="LineStatus" title="Line status"
+					borderColor="sapUiContentShadowColor" backgroundColor="sapUiContentShadowColor"
+					hoverBorderColor="sapUiContentShadowColor" hoverBackgroundColor="sapUiContentShadowColor"
+					legendColor="sapUiContentShadowColor"/>
+
+			<Status key="CustomStandard" title="Standard" backgroundColor="red"
+					borderColor="sapUiContentShadowColor" hoverBorderColor="sapUiContentShadowColor" />
+
+			<Status key="CustomStandardGroup" title="Standard"
+					borderColor="sapUiContentShadowColor" backgroundColor="sapUiNeutralBorder"
+					hoverBackgroundColor="sapUiNeutralBorder"
+					hoverContentColor="sapUiFieldWarningColor"
+					contentColor="sapUiFieldHelpBackground" useFocusColorAsContentColor="true"
+					legendColor="sapUiContentShadowColor"/>
+
+			<Status key="AttributeLabel" contentColor="sapUiCalendarColorToday"
+					hoverContentColor="red"
+					selectedContentColor="red"/>
+
+			<Status key="AttributeValue" contentColor="green"/>
+		</statuses>
+
                             <nodes>
                                 <Node
                                     key="{graph>key}"
                                     title="{graph>title}"
                                     icon="{graph>icon}"
-                                    attributes="{path:'graph>/nodes', templateShareable:true}"
+                                    attributes="{path:'graph>attributes', templateShareable:true}"
                                     actionButtons="{path:'graph>actionButtons', templateShareable:true}"
                                     showActionLinksButton="{graph>actionlinksbutton}"
                                     showDetailButton="{graph>detailbutton}"
                                     showExpandButton="{graph>expandbutton}"
                                     status="{graph>status}"
                                     press="nodePress"
+                                    
+                                    
                                 >
                                     <attributes>
                                         <ElementAttribute
-                                            label="{graph>/label}"
-                                            value="{graph>/value}"
+                                            label="{graph>label}"
+                                            value="{graph>value}"
                                         />
                                     </attributes>
                                     <actionButtons>
@@ -223,9 +392,9 @@
                                     press="linePress"
                                 />
                             </lines>
-                        </Graph>
+                        </Graph> -->
 
-     <!-- ///////////////////////Network Graph Section////////////////////////////// -->
+                        <!-- ///////////////////////Network Graph Section////////////////////////////// -->
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="comments"

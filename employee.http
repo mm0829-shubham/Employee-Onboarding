@@ -9,11 +9,11 @@ Content-Type: application/json
 
 
 {  
-    "empId":1,
-    "firstName":"Shubham",
+    "empId":3,
+    "firstName":"Ankit",
     "lastName":"kumar",
     "mobileNumber":"7985919618",
-    "address":"Marathalli",
+    "address":"Brookfield",
     "city":"Bangalore",
     "state":"Karnataka",
     "pincode":"560036"
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:4004/odata/v4/catalog/Employees/2
+DELETE http://localhost:4004/odata/v4/catalog/Employees/3d6f13de-5d51-4adc-9f5c-8c81c53c1af8
 Content-Type: application/json
 
 ###

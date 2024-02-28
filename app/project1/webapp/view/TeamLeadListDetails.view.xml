@@ -108,6 +108,7 @@
                             <m:Text text="{employee>position}" />
                             <m:Label text="Department" />
                             <m:Text text="{employee>department}" />
+                           
                             <!-- <m:Label text="Salary Details" />
                             <m:Text text="{employee>salaryDetails}" />
                             <m:Label text="Laptop Required" />
@@ -122,48 +123,99 @@
                     >
                          <!-- ///////////////////////Network Graph Section////////////////////////////// -->
 
-    <Graph
-		enableWheelZoom="false"
-        id="graph"
-        orientation="TopBottom"
-        height="100%"
-        width="100%"
-        nodes="{graph>/nodes}"
-        lines="{graph>/lines}">
-        <nodes>
-            <Node
-                    key="{graph>key}"
-                    title="{graph>title}"
-                    icon="{graph>icon}"
-                    attributes="{path:'graph>/nodes', templateShareable:true}"
-                    actionButtons="{path:'graph>actionButtons', templateShareable:true}"
-                    showActionLinksButton="{graph>actionlinksbutton}"
-                    showDetailButton="{graph>detailbutton}"
-                    showExpandButton="{graph>expandbutton}"
-                    status="{graph>status}"
-                    press="nodePress">
-                <attributes>
-                    <ElementAttribute
-                        label="{graph>/label}"
-                        value="{graph>/value}"/>
-                </attributes>
-                <actionButtons>
-                    <ActionButton
-                        icon="{graph>icon}"
-                        title="Custom button"
-                        press="buttonPress" />
-                </actionButtons>
-            </Node>
-        </nodes>
-        <lines>
-            <Line
-                    from="{graph>from}"
-                    to="{graph>to}"
-                    press="linePress">
-            </Line>
-        </lines>
-    </Graph>
 
+     <Graph
+                            id="graph"
+                            enableWheelZoom="false"
+                        >
+                            <nodes>
+                                <Node
+                                    key="EmployeeStatus"
+                                    title="{employee>name}"
+                                    status="{employee>empFlowStatus}"
+                                    icon="sap-icon://add-employee"
+                                    class="customNode"
+                                    
+                                />
+                                <Node
+                                    key="JHRStatus"
+                                    title="Junior HR Status"
+                                    status="{employee>jrHrFlowStatus}"
+                                    icon="sap-icon://hr-approval"
+                                />
+
+                                <Node
+                                    key="ITStatus"
+                                    title="IT Department Status"
+                                    status="{employee>itFlowStatus}"
+                                    icon="sap-icon://action-settings"
+                                />
+                                <Node
+                                    key="FinanceStatus"
+                                    title="Finance Department Status"
+                                    status="{employee>finFlowStatus}"
+                                    icon="sap-icon://monitor-payments"
+                                />
+                                <Node
+                                    key="TLStatus"
+                                    title="Team Lead / Manager Status"
+                                    status="{employee>tlFlowStatus}"
+                                    icon="sap-icon://manager"
+                                />
+
+                                <Node
+                                    key="HeadHRStatus"
+                                    title="Head HR Status"
+                                    status="{employee>hHrFlowStatus}"
+                                    icon="sap-icon://kpi-managing-my-area"
+                                />
+                            </nodes>
+                            <lines>
+                                <Line
+                                    from="EmployeeStatus"
+                                    to="JHRStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="JHRStatus"
+                                    to="FinanceStatus"
+                                   
+                                />
+                                <Line
+                                    from="JHRStatus"
+                                    to="ITStatus"
+                                    
+                                />
+                                <Line
+                                    from="JHRStatus"
+                                    to="TLStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="FinanceStatus"
+                                    to="HeadHRStatus"
+                                   
+                                />
+                                <Line
+                                    from="ITStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+                                <Line
+                                    from="TLStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+
+                                <Line
+                                    from="JHRStatus"
+                                    to="HeadHRStatus"
+                                    
+                                />
+                            </lines>
+                        </Graph>
 
 
 

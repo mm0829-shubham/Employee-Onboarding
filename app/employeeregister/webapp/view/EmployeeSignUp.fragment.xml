@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="editEmployee"
+        title="Employee SignUp"
+        class="sapUiPopupWithPadding"
+        
+    >
+        <VBox>  
+        <Label text="Emp Id:" />
+            <Input
+                id="empId"
+                value="{employeeModel>/EditEmployee/empId}"
+                type="Text"
+            />           
+         <Label text="First Name:" />
+            <Input
+                id="firstName"
+                value="{employeeModel>/EditEmployee/firstName}"
+                type="Text"
+            />  
+            <Label text="Last Name:" />
+            <Input
+                id="lastName"
+                value="{employeeModel>/EditEmployee/lastName}"
+                type="Text"
+            />  
+            <Label text="Mobile Number:" />
+            <Input
+                id="mobileNumber"
+                value="{employeeModel>/EditEmployee/mobileNumber}"
+                type="Text"
+            />  
+            <Label text="Address:" />
+            <Input
+                id="address"
+                value="{employeeModel>/EditEmployee/address}"
+                type="Text"
+            />  
+            <Label text="City:" />
+            <Input
+                id="city"
+                value="{employeeModel>/EditEmployee/city}"
+                type="Text"
+            /> 
+            <Label text="State:" /> 
+            <Input
+                id="state"
+                value="{employeeModel>/EditEmployee/state}"
+                type="Text"
+            />  
+            <Label text="Pin Code:" />
+            <Input
+                id="pincode"
+                value="{employeeModel>/EditEmployee/pincode}"
+                type="Text"
+            />                    
+
+                    </VBox>
+
+        <beginButton>
+            <Button
+                text="Save"
+                press=".onSaveEmp"
+            />
+        </beginButton>
+
+        <endButton>
+            <Button
+                text="Cancel"
+                press="onCancelEmployee"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

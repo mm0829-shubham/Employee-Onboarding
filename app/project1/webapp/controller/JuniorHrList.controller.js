@@ -13,6 +13,7 @@ sap.ui.define([
         onPressEmployee: function (oEvent) {
 
             let sEmployeeId = oEvent.getSource().getTitle();
+            console.log("sEmployeeId", sEmployeeId)
             this.getOwnerComponent().getRouter().navTo("EmployeeDetails", {
                 EmployeeId: sEmployeeId,
             });

@@ -1,0 +1,13 @@
+{
+    "EditEmployee": {
+        "empId":"mm000",
+        "firstName": "",
+        "lastName": "",
+        "mobileNumber":"",
+        "address":"",
+        "city": "",
+        "state":"",
+        "pincode":""
+        
+    }
+}

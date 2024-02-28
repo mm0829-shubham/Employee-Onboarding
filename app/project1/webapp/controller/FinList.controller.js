@@ -15,7 +15,7 @@ sap.ui.define([
             let sEmployeeId = oEvent.getSource().getTitle();
             this.getOwnerComponent().getRouter().navTo("FinListDetails", {
                 FinListDetailsId: sEmployeeId,
-            }); 
+            });
         },
 
         onSearchEmp: function (oEvent) {

@@ -14,8 +14,8 @@ sap.ui.define([
 
             let sEmployeeId = oEvent.getSource().getTitle();
             this.getOwnerComponent().getRouter().navTo("HeadHrListDetails", {
-                HeadHrListDetailsId:sEmployeeId,
-            }); 
+                HeadHrListDetailsId: sEmployeeId,
+            });
         },
 
         onSearchEmp: function (oEvent) {
