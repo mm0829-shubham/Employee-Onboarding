@@ -14,38 +14,13 @@
                 value="{employeeModel>/EditEmployee/email}"
                 type="Text"
             />
-
-            <!-- <Label text="Position" />
-            <Select
-                id="position"
-                selectedKey="{employeeModel>/EditEmployee/position}"
-                change="onPositionChange"
-            >
-            <core:Item
-                    key="Position1"
-                    text=""
-                />
-                <core:Item
-                    key="Position2"
-                    text="Trainee"
-                />
-                <core:Item
-                    key="Position3"
-                    text="Developer"
-                />
-                <core:Item
-                    key="Position4"
-                    text="Senior Developer"
-                />
-            </Select>    -->
-
             <Label text="HR Status" />
             <Select
                 id="hrStatus"
-                selectedKey ="{employeeModel>/EditEmployee/hrStatus}" 
+                selectedKey="{employeeModel>/EditEmployee/hrStatus}"
                 change="onHrStatusChange"
             >
-            <core:Item
+                <core:Item
                     key="Select"
                     text="Select"
                 />

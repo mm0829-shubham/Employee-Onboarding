@@ -26,7 +26,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:4004/odata/v4/catalog/Comments/1
+DELETE http://localhost:4004/odata/v4/catalog/Comments/fa0d7507-ed89-41d4-be4a-7e9943efde3c
 Content-Type: application/json
 
 ###

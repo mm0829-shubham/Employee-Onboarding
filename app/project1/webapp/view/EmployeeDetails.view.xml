@@ -24,23 +24,23 @@
                     level="H2"
                 />
                 <m:ToolbarSpacer />
-                <!-- <m:Button
-                    icon="sap-icon://edit"
-                    type="Transparent"
-                    press="onEdit"
-                    ariaLabelledBy="editButtonLabel"
-                /> -->
             </m:Toolbar>
         </m:customHeader>
-        <!-- this CSS class add a standard spacing to all the page content -->
+
         <m:content>
-            <!-- <m:Button
-                    icon="sap-icon://edit"
-                    type="Transparent"
-                    press="onEdit"
-                    ariaLabelledBy="editButtonLabel"
-                    class="sapUiSmallMarginBegin"
-                /> -->
+         <m:FlexBox
+                            justifyContent="End"
+                            width="100%"
+                        >
+                            <!-- Content on the left side (if any) -->
+                            <m:Button
+                                icon="sap-icon://edit"
+                                type="Transparent"
+                                press="onEdit"
+                                ariaLabelledBy="editButtonLabel"
+                                class="sapUiSmallMarginBegin"
+                            />
+                        </m:FlexBox>
             <m:ObjectHeader
                 id="idPage"
                 responsive="true"
@@ -52,6 +52,7 @@
                 backgroundDesign="Translucent"
                 class="sapUiResponsivePadding--header"
             >
+            
                 <m:statuses>
                     <m:ObjectStatus
                         title="Onboarding Status"
@@ -87,40 +88,6 @@
                         state="{= ${employee>hrStatus} === 'Approve' ? 'Success' : ${employee>hrStatus} === 'Pending' ? 'Warning' : 'Error' }"
                     />
                 </m:statuses>
-
-                <m:headerContainer>
-                    <!-- <IconTabBar
-				id="itb1"
-				selectedKey="key3"
-				upperCase="true"
-				class="sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter
-						key="info"
-						icon="sap-icon://hint">
-						<Text text="Info content goes here ..." />
-						
-					</IconTabFilter>
-					<IconTabFilter
-						key="attachments"
-						icon="sap-icon://attachment"
-						count="3">
-						<Text text="Attachments go here ..." />
-					</IconTabFilter>
-					<IconTabFilter
-						key="notes"
-						icon="sap-icon://notes"
-						count="12">
-						<Text text="Notes go here ..." />
-					</IconTabFilter>
-					<IconTabFilter
-						key="people"
-						icon="sap-icon://group">
-						<Text text="People content goes here ..." />
-					</IconTabFilter>
-				</items>
-			</IconTabBar> -->
-                </m:headerContainer>
             </m:ObjectHeader>
             <m:IconTabBar
                 expanded="{employee>/Employees}"
@@ -131,19 +98,7 @@
                         key="empStatus"
                         text="General"
                     >
-                        <m:FlexBox
-                            justifyContent="End"
-                            width="100%"
-                        >
-                            <!-- Content on the left side (if any) -->
-                            <m:Button
-                                icon="sap-icon://edit"
-                                type="Transparent"
-                                press="onEdit"
-                                ariaLabelledBy="editButtonLabel"
-                                class="sapUiSmallMarginBegin"
-                            />
-                        </m:FlexBox>
+                       
                         <f:SimpleForm layout="ResponsiveGridLayout">
                             <f:title>
                                 <core:Title text="Employee Details" />
@@ -161,16 +116,6 @@
                             <m:Text
                                 text="{employee>state},{employee>pincode}"
                             />
-                            <!-- <m:Label text="Position" />
-                            <m:Text text="{employee>position}" />
-                            <m:Label text="Department" />
-                            <m:Text text="{employee>department}" />
-                            <m:Label text="Salary Details" />
-                            <m:Text text="{employee>salaryDetails}" />
-                            <m:Label text="Laptop Required" />
-                            <m:Text text="{employee>laptop}" />
-                            <m:Label text="Mouse Required" />
-                            <m:Text text="{employee>mouse}" /> -->
                         </f:SimpleForm>
                     </m:IconTabFilter>
                     <m:IconTabFilter
@@ -189,7 +134,6 @@
                                     title="{employee>name}"
                                     status="{employee>empFlowStatus}"
                                     icon="sap-icon://add-employee"
-                                    
                                 />
                                 <Node
                                     key="JHRStatus"
@@ -228,213 +172,69 @@
                                 <Line
                                     from="EmployeeStatus"
                                     to="JHRStatus"
-                                    
                                 />
 
                                 <Line
                                     from="JHRStatus"
                                     to="FinanceStatus"
-                                   
                                 />
                                 <Line
                                     from="JHRStatus"
                                     to="ITStatus"
-                                    
                                 />
                                 <Line
                                     from="JHRStatus"
                                     to="TLStatus"
-                                    
                                 />
 
                                 <Line
                                     from="FinanceStatus"
                                     to="HeadHRStatus"
-                                   
                                 />
                                 <Line
                                     from="ITStatus"
                                     to="HeadHRStatus"
-                                    
                                 />
                                 <Line
                                     from="TLStatus"
                                     to="HeadHRStatus"
-                                    
                                 />
 
                                 <Line
                                     from="JHRStatus"
                                     to="HeadHRStatus"
-                                    
                                 />
                             </lines>
                         </Graph>
 
-                        <!-- <mvc:script>
-        <script>
-            var graph = this.getView().byId("graph");
-            graph.getNodes().forEach(function(node) {
-                var status = node.getStatus();
-                var color;
-                switch(status) {
-                    case "Approved":
-                        color = "#00FF00"; // Green
-                        break;
-                    case "Pending":
-                        color = "#FFFF00"; // Yellow
-                        break;
-                    case "Rejected":
-                        color = "#FF0000"; // Red
-                        break;
-                    default:
-                        color = "#000000"; // Black (default color)
-                }
-                node.setColor(color);
-            });
-
-            graph.getLines().forEach(function(line) {
-                var status = line.getStatus();
-                var color;
-                switch(status) {
-                    case "Approved":
-                        color = "#00FF00"; // Green
-                        break;
-                    case "Pending":
-                        color = "#FFFF00"; // Yellow
-                        break;
-                    case "Rejected":
-                        color = "#FF0000"; // Red
-                        break;
-                    default:
-                        color = "#000000"; // Black (default color)
-                }
-                line.setColor(color);
-            });
-        </script>
-    </mvc:script> -->
-
-                        <!-- <Graph
-                            enableWheelZoom="false"
-                            id="graph"
-                            orientation="TopBottom"
-                            height="100%"
-                            width="100%"
-                            nodes="{graph>/nodes}"
-                            lines="{graph>/lines}"
-                        >
-
-                        	<statuses>
-			<Status key="CustomSuccess" title="Success" contentColor="sapUiCalendarColorToday" headerContentColor="sapUiCalendarColorToday"
-					borderColor="sapUiCalendarColorToday" selectedBackgroundColor="sapUiChartPaletteQualitativeHue10"
-					selectedBorderColor="sapUiChartPaletteQualitativeHue10" selectedContentColor="black"
-					hoverBorderColor="sapUiCalendarColorToday" hoverContentColor="black"
-					hoverBackgroundColor="sapUiCalendarColorToday"
-					legendColor="sapUiCalendarColorToday" useFocusColorAsContentColor="true"/>
-
-			<Status key="LineStatus" title="Line status"
-					borderColor="sapUiContentShadowColor" backgroundColor="sapUiContentShadowColor"
-					hoverBorderColor="sapUiContentShadowColor" hoverBackgroundColor="sapUiContentShadowColor"
-					legendColor="sapUiContentShadowColor"/>
-
-			<Status key="CustomStandard" title="Standard" backgroundColor="red"
-					borderColor="sapUiContentShadowColor" hoverBorderColor="sapUiContentShadowColor" />
-
-			<Status key="CustomStandardGroup" title="Standard"
-					borderColor="sapUiContentShadowColor" backgroundColor="sapUiNeutralBorder"
-					hoverBackgroundColor="sapUiNeutralBorder"
-					hoverContentColor="sapUiFieldWarningColor"
-					contentColor="sapUiFieldHelpBackground" useFocusColorAsContentColor="true"
-					legendColor="sapUiContentShadowColor"/>
-
-			<Status key="AttributeLabel" contentColor="sapUiCalendarColorToday"
-					hoverContentColor="red"
-					selectedContentColor="red"/>
-
-			<Status key="AttributeValue" contentColor="green"/>
-		</statuses>
-
-                            <nodes>
-                                <Node
-                                    key="{graph>key}"
-                                    title="{graph>title}"
-                                    icon="{graph>icon}"
-                                    attributes="{path:'graph>attributes', templateShareable:true}"
-                                    actionButtons="{path:'graph>actionButtons', templateShareable:true}"
-                                    showActionLinksButton="{graph>actionlinksbutton}"
-                                    showDetailButton="{graph>detailbutton}"
-                                    showExpandButton="{graph>expandbutton}"
-                                    status="{graph>status}"
-                                    press="nodePress"
-                                    
-                                    
-                                >
-                                    <attributes>
-                                        <ElementAttribute
-                                            label="{graph>label}"
-                                            value="{graph>value}"
-                                        />
-                                    </attributes>
-                                    <actionButtons>
-                                        <ActionButton
-                                            icon="{graph>icon}"
-                                            title="Custom button"
-                                            press="buttonPress"
-                                        />
-                                    </actionButtons>
-                                </Node>
-                            </nodes>
-                            <lines>
-                                <Line
-                                    from="{graph>from}"
-                                    to="{graph>to}"
-                                    press="linePress"
-                                />
-                            </lines>
-                        </Graph> -->
-
                         <!-- ///////////////////////Network Graph Section////////////////////////////// -->
-
-
                     </m:IconTabFilter>
                     <m:IconTabFilter
                         key="comments"
                         text="Comments"
                     >
-	<m:FeedInput
-		post="onPost"
-		icon="test-resources/sap/m/images/dronning_victoria.jpg"
-		class="sapUiSmallMarginTopBottom" />
-	<m:List
-		showSeparators="Inner"
-		items="{feedModel>/EntryCollection}" >
-		<m:FeedListItem
-			sender="{feedModel>Author}"
-			icon="{feedModel>AuthorPicUrl}"
-			senderPress="onSenderPress"
-			iconPress="onIconPress"
-			
-			info="{feedModel>Type}"
-			timestamp="{feedModel>Date}"
-			text="{feedModel>Text}"
-			convertLinksToAnchorTags="All"/>
-	</m:List>
+                        <m:FeedInput
+                            post="onPost"
+                            class="sapUiSmallMarginTopBottom"
+                        />
+                        <m:List
+                            showSeparators="Inner"
+                            items="{employee>Comment}"
+                        >
+                            <m:FeedListItem
+                                sender="{employee>author}"
+                                icon="{employee>authorPicUrl}"
+                                senderPress="onSenderPress"
+                                iconPress="onIconPress"
+                                info="{employee>type}"
+                                timestamp="{employee>Date}"
+                                text="{employee>comment}"
+                                convertLinksToAnchorTags="All"
+                            />
+                        </m:List>
                     </m:IconTabFilter>
                 </m:items>
             </m:IconTabBar>
-
-            <!-- <f:SimpleForm
-				layout="ResponsiveGridLayout"
-				class="sapUiForceWidthAuto sapUiResponsiveMargin" >
-				<f:title>
-					<core:Title text="A Form ugdgdgjdgkd" />
-				</f:title>
-				<Label text="Label"/>
-				<Text text="Value"/>
-			</f:SimpleForm> -->
-            <!-- <List headerText="A List " backgroundDesign="Translucent" width="auto" class="sapUiResponsiveMargin"/> -->
-            <!-- <Table headerText="A Table" width="auto" class="sapUiResponsiveMargin"/>
-			<Panel headerText="A Panel" width="auto" class="sapUiResponsiveMargin"/> -->
         </m:content>
     </m:Page>
 </mvc:View>

@@ -8,8 +8,6 @@
         class="sapUiPopupWithPadding"
     >
         <VBox>
-            
-
             <Label text="Employee Onboarding Status" />
             <Select
                 id="status"

@@ -80,15 +80,20 @@ entity Employees {
   Approve = 'Success';
   Reject = 'Error';
 } default 'Warning';
+  Comment : Association to many Comments on Comment.empId = $self.empId
   // Department:Association to many Departments on Department.Department_Id = $self.Employee_Department_ID;
 }
 
 
 entity Comments {
 key commentId:UUID;
-empId:Integer;
+empId:Integer @cds.autoferer;
+author:String;
+authorPicUrl:String;
+type:String;
 comment:String;
-timestamp: DateTime;
+Date: String;
+createdOn : Timestamp;
 }
 
 

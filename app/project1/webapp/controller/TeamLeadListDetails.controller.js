@@ -5,9 +5,11 @@ sap.ui.define([
   'sap/ui/core/Fragment',
   "sap/m/MessageBox",
   "sap/suite/ui/microchart/ComparisonMicroChart",
-  "sap/suite/ui/microchart/ComparisonMicroChartData"
+  "sap/suite/ui/microchart/ComparisonMicroChartData",
+  "sap/ui/core/format/DateFormat",
+  "sap/m/MessageToast",
 
-], function (Controller, JSONModel, DataType, Fragment, MessageBox, ComparisonMicroChart, ComparisonMicroChartData) {
+], function (Controller, JSONModel, DataType, Fragment, MessageBox, ComparisonMicroChart, ComparisonMicroChartData,DateFormat,MessageToast) {
   "use strict";
 
   return Controller.extend("project1.controller.TeamLeadListDetails", {
@@ -122,13 +124,14 @@ sap.ui.define([
 
         $.ajax({
           method: "PATCH",
-          url: `https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees/${sEmployeeId}`,
+          url: `${this.getOwnerComponent().getModel("employee").getServiceUrl()}Employees/${sEmployeeId}`,
           contentType: "application/json",
           data: JSON.stringify(oData),
           success: (data) => {
             MessageBox.show("Employee data updated successfully!");
             // Call onCancelEmployee() here since the AJAX request is successful
 
+            this.getView().getModel("employee").refresh();
           },
           error: (error) => {
             console.error(error);
@@ -148,41 +151,53 @@ sap.ui.define([
     
     
     onPost: function (oEvent) {
-      // var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
-      // var oDate = new Date();
-      // var sDate = oFormat.format(oDate);
-      // Get the current date and time in medium style format
+      var sEmployeeId = Number(this._empId);
+      console.log("sEmployeeId", sEmployeeId)
+      var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
       var oDate = new Date();
-      var sDate = oDate.toLocaleDateString(undefined, { style: 'medium' }) + ' ' + oDate.toLocaleTimeString(undefined, { style: 'medium' });
+      var sDate = oFormat.format(oDate);
+
 
       // create new entry
       var sValue = oEvent.getParameter("value");
       var oEntry = {
-        Author: "Team Lead",
-        AuthorPicUrl: "sap-icon://manager",
-        Type: "Reply",
+        author: "Team Lead / Manager",
+        authorPicUrl: "sap-icon://manager",
+        type: "Reply",
         Date: "" + sDate,
-        Text: sValue
+        comment: sValue,
+        empId: sEmployeeId
       };
+      if (oEntry) {
+        $.ajax({
+          method: "POST",
+          url: `${this.getOwnerComponent().getModel("employee").getServiceUrl()}Comments`,
+          contentType: "application/json",
+          data: JSON.stringify(oEntry),
+          success: (data) => {
 
-      // update model
-      var oModel = this.getView().getModel("feedModel");
-      var aEntries = oModel.getData().EntryCollection;
-      aEntries.unshift(oEntry);
-      oModel.setData({
-        EntryCollection: aEntries
-      });
+            MessageToast.show("Comments successfully!");
+            
+            this.getView().getModel("employee").refresh();},
+          error: (error) => {
+            console.error(error);
+          },
+        });
+
+      }
+
+
+
+
     },
 
     onSenderPress: function (oEvent) {
-      MessageBox.show("Clicked on Link: " + oEvent.getSource().getSender());
+      MessageToast.show(oEvent.getSource().getSender());
     },
 
     onIconPress: function (oEvent) {
-      MessageBox.show("Clicked on Image: " + oEvent.getSource().getSender());
-    }
-
-
+      MessageToast.show(oEvent.getSource().getSender() + "Photo");
+    },
 
 
 

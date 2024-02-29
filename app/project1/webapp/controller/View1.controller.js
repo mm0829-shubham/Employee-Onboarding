@@ -24,7 +24,7 @@ sap.ui.define([
 
                 // Load the user data from the JSON file
                 $.ajax({
-                    url: "https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees",
+                    url: `${this.getOwnerComponent().getModel("employee").getServiceUrl()}Employees`,
                     type: "GET",
                     dataType: "json",
                     success: function () {

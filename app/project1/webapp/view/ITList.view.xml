@@ -22,10 +22,7 @@
                 <ObjectAttribute title="Employee Name" text="{employee>name}" />
                 <!-- IT Status -->
                 <ObjectAttribute title="IT Status" text="{employee>itStatus}" />
-                <!-- Finance Status -->
-                <!-- <ObjectAttribute title="Finance Status" text="{employee>finStatus}" /> -->
-                <!-- Manager Status -->
-                <!-- <ObjectAttribute title="Team Lead Status" text="{employee>tlStatus}" /> -->
+               
             </attributes>
         </ObjectListItem>
     </List>
