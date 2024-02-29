@@ -137,6 +137,14 @@ sap.ui.define([
     onCancelEmployee() {
       this.byId("editEmployee").close();
     },
+
+
+
+
+
+    //////////////----Feed Inputs (Comments)--------////////////////////////////////////////////////////////////////////////
+    
+    
     onPost: function (oEvent) {
       // var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
       // var oDate = new Date();
@@ -148,15 +156,15 @@ sap.ui.define([
       // create new entry
       var sValue = oEvent.getParameter("value");
       var oEntry = {
-        Author: "Alexandrina Victoria",
-        AuthorPicUrl: "http://upload.wikimedia.org/wikipedia/commons/a/aa/Dronning_victoria.jpg",
+        Author: "Finance Department",
+        AuthorPicUrl: "sap-icon://monitor-payments",
         Type: "Reply",
         Date: "" + sDate,
         Text: sValue
       };
 
       // update model
-      var oModel = this.getView().getModel();
+      var oModel = this.getView().getModel("feedModel");
       var aEntries = oModel.getData().EntryCollection;
       aEntries.unshift(oEntry);
       oModel.setData({

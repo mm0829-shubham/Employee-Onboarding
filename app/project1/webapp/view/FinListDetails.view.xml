@@ -228,25 +228,23 @@
                         text="Comments"
                     >
                         <m:FeedInput
-                            post="onPost"
-                            icon="sap-icon://customer"
-                            class="sapUiSmallMarginTopBottom"
-                        />
-                        <m:List
-                            showSeparators="Inner"
-                            items="{feedModel>/EntryCollection}"
-                        >
-                            <m:FeedListItem
-                                sender="{Author}"
-                                icon="{AuthorPicUrl}"
-                                senderPress="onSenderPress"
-                                iconPress="onIconPress"
-                                info="{Type}"
-                                timestamp="{Date}"
-                                text="{Text}"
-                                convertLinksToAnchorTags="All"
-                            />
-                        </m:List>
+		post="onPost"
+		icon="test-resources/sap/m/images/dronning_victoria.jpg"
+		class="sapUiSmallMarginTopBottom" />
+	<m:List
+		showSeparators="Inner"
+		items="{feedModel>/EntryCollection}" >
+		<m:FeedListItem
+			sender="{feedModel>Author}"
+			icon="{feedModel>AuthorPicUrl}"
+			senderPress="onSenderPress"
+			iconPress="onIconPress"
+			
+			info="{feedModel>Type}"
+			timestamp="{feedModel>Date}"
+			text="{feedModel>Text}"
+			convertLinksToAnchorTags="All"/>
+	</m:List>
                     </m:IconTabFilter>
                 </m:items>
             </m:IconTabBar>

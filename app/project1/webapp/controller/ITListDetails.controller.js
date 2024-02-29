@@ -16,10 +16,9 @@ sap.ui.define([
     onInit: function () {
 
       this.getOwnerComponent().getRouter().getRoute("ITListDetails").attachPatternMatched(this._onObjectMatched, this);
-
-      var sPath = sap.ui.require.toUrl("sap/m/sample/Feed/feed.json");
-      var oModel = new JSONModel(sPath);
-      this.getView().setModel(oModel);
+      let newfeedModel = this.getView().getModel("feedModel")
+      var oFeedModel = new JSONModel(newfeedModel);
+			this.getView().setModel(oFeedModel);
 
     },
 
@@ -142,6 +141,13 @@ sap.ui.define([
     onCancelEmployee() {
       this.byId("editEmployee").close();
     },
+
+
+    
+
+    //////////////----Feed Inputs (Comments)--------////////////////////////////////////////////////////////////////////////
+    
+    
     onPost: function (oEvent) {
       // var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
       // var oDate = new Date();
@@ -153,15 +159,15 @@ sap.ui.define([
       // create new entry
       var sValue = oEvent.getParameter("value");
       var oEntry = {
-        Author: "Alexandrina Victoria",
-        AuthorPicUrl: "http://upload.wikimedia.org/wikipedia/commons/a/aa/Dronning_victoria.jpg",
+        Author: "IT Department",
+        AuthorPicUrl: "sap-icon://action-settings",
         Type: "Reply",
         Date: "" + sDate,
         Text: sValue
       };
 
       // update model
-      var oModel = this.getView().getModel();
+      var oModel = this.getView().getModel("feedModel");
       var aEntries = oModel.getData().EntryCollection;
       aEntries.unshift(oEntry);
       oModel.setData({
@@ -176,6 +182,8 @@ sap.ui.define([
     onIconPress: function (oEvent) {
       MessageBox.show("Clicked on Image: " + oEvent.getSource().getSender());
     }
+
+
 
 
 

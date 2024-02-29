@@ -8,10 +8,12 @@ sap.ui.define([
   "sap/suite/ui/microchart/ComparisonMicroChartData",
   "sap/m/OverflowToolbarButton",
   "sap/suite/ui/commons/networkgraph/util/Dijkstra",
-  "../model/formatter"
+  "../model/formatter",
+  "sap/ui/core/format/DateFormat",
+  "sap/m/MessageToast",
 
 
-], function (Controller, JSONModel, DataType, Fragment, MessageBox, ComparisonMicroChart, ComparisonMicroChartData, OverflowToolbarButton, Dijkstra, formatter) {
+], function (Controller, JSONModel, DataType, Fragment, MessageBox, ComparisonMicroChart, ComparisonMicroChartData, OverflowToolbarButton, Dijkstra, formatter,DateFormat,MessageToast) {
   "use strict";
 
   return Controller.extend("project1.controller.EmployeeDetails", {
@@ -21,48 +23,9 @@ sap.ui.define([
     onInit: function () {
 
       this.getOwnerComponent().getRouter().getRoute("EmployeeDetails").attachPatternMatched(this._onObjectMatched, this);
-      // var sPath = sap.ui.require.toUrl("sap/m/sample/Feed/feed.json");
-      // var oModel = new JSONModel(sPath);
-      // this.getView().setModel(oModel);
-
-      //   var sModuleName = "sap/suite/ui/commons/sample/NetworkGraphBidirectionalCollapsing",
-      //   oModel = new JSONModel(sap.ui.require.toUrl(sModuleName + "/graph.json")),
-      //   oView = this.getView(),
-      //   oGraph = oView.byId("graph");
-
-      // function hideChildNodes(oNode) {
-      //   oNode.getChildNodes().forEach(function (oChild) {
-      //     oChild.setHidden(true);
-      //     hideChildNodes(oChild);
-      //   });
-      // }
-      // function hideParentNodes(oNode) {
-      //   oNode.getParentNodes().forEach(function (oParent) {
-      //     oParent.setHidden(true);
-      //     hideParentNodes(oParent);
-      //   });
-      // }
-      // function hideAllNodes() {
-      //   var oVisibleNode = oGraph.getNodeByKey("19");
-      //   if (oVisibleNode) {
-      //     hideChildNodes(oVisibleNode);
-      //     hideParentNodes(oVisibleNode);
-      //     oVisibleNode.setStatusIcon(STATUS_ICON);
-      //     fixNodeState(oVisibleNode);
-      //     oGraph.scrollToElement(oVisibleNode);
-      //   }
-      // }
-
-      // oView.setModel(oModel);
-      // oGraph.attachBeforeLayouting(hideAllNodes);
-      // oGraph.getToolbar().addContent(new OverflowToolbarButton({
-      //   icon: "sap-icon://collapse-all",
-      //   tooltip: "Collapse all nodes",
-      //   type: "Transparent",
-      //   press: hideAllNodes
-      // }));
-      // oGraph.attachSelectionChange(this.selectionChange, this);
-
+      let newfeedModel = this.getView().getModel("feedModel")
+      var oFeedModel = new JSONModel(newfeedModel);
+			this.getView().setModel(oFeedModel);
     },
 
     _onObjectMatched: function (oEvent) {
@@ -113,74 +76,7 @@ sap.ui.define([
       });
     },
 
-    //   onSaveEmployee: function(oEvent) {
-    //     var sEmployeeId = oEvent.getParameter("arguments").EmployeeId;
-    //     const sSelectedPosition = this.getView().byId("position").getSelectedKey();
-
-    //     const url = `${this.getOwnerComponent().getModel("employee").getServiceUrl()}/Employees/('${sEmployeeId}')`;
-
-    //     if (sSelectedPosition) {
-    //         const oData = {
-    //             position: sSelectedPosition
-    //         };
-
-    //         $.ajax({
-    //             method: "PATCH",
-    //             url: url,
-    //             contentType: "application/json",
-    //             data: JSON.stringify(oData),
-    //             success: () => {
-    //                 MessageToast.show("Employee Position updated successfully!");
-    //             },
-    //             error: (error) => {
-    //                 console.error(error);
-    //             },
-    //         });
-    //     }
-
-    //     this.onCancelEmployee();
-    // },
-
-
-
-    //   onSaveEmployee: function(oEvent) {
-    //     var sEmployeeId = this._empId;
-    //     var sEmailId = this.getView().getModel("employeeModel").getProperty("/EditEmployee/email");
-    //     var sSelectedHrStatus = this.getView().getModel("employeeModel").getProperty("/EditEmployee/hrStatus"); 
-    //     console.log("sSelectedHrStatus",this.getView().getModel("employeeModel"))   
-    //     var smmId = this.getView().getModel("employeeModel").getProperty("/EditEmployee/mmId");
-
-    //     if (!smmId) {
-    //         smmId = "mm001";
-    //     } else {
-    //         smmId = "mm" + (parseInt(smmId.substring(2)) + 1);
-    //     }
-
-    //     if (sSelectedHrStatus && sEmailId) {
-    //         var oData = {
-    //             email: sEmailId,
-    //             hrStatus: sSelectedHrStatus,
-    //             mmId: smmId
-    //         };
-
-    //         $.ajax({
-    //             method: "PATCH",
-    //             url: `https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees/${sEmployeeId}`,
-    //             contentType: "application/json",
-    //             data: JSON.stringify(oData),
-    //             success: (data) => {
-    //                 MessageBox.show("Employee data updated successfully!");
-    //                 // Call onCancelEmployee() here since the AJAX request is successful
-
-    //             },
-    //             error: (error) => {
-    //                 console.error(error);
-    //             },
-    //         }); 
-    //         this.onCancelEmployee();      
-    //     }
-    // },
-
+    
     onSaveEmployee: function (oEvent) {
       var sEmployeeId = this._empId;
       var sEmailId = this.getView().getModel("employeeModel").getProperty("/EditEmployee/email");
@@ -253,99 +149,46 @@ sap.ui.define([
       this.fnBindData();
       this.onCancelEmployee();
     },
-    // onSaveEmployee: function(oEvent) {
-    //   var sEmployeeId = this._empId;
-    //   var sEmailId = this.getView().getModel("employeeModel").getProperty("/EditEmployee/email");
-    //   var sSelectedHrStatus = this.getView().getModel("employeeModel").getProperty("/EditEmployee/hrStatus"); 
-    //   // var smmId = this.getView().getModel("employeeModel").getProperty("/EditEmployee/mmId");
-
-    //   // Function to update employee data
-
-
-
-    //           // Check if mmId exists in the employee model
-    //           var oEmployeeModel = this.getView().getModel("employee");
-    //           var aEmployees = oEmployeeModel.getProperty("/Employees/mmId");
-    //           var bUpdated = false;
-    //           for (var i = 0; i < aEmployees.length; i++) {
-    //               if (aEmployees[i].mmId === smmId) {
-    //                  let smmId = "mm" + (parseInt(smmId.substring(2)) + 1);
-    //                   bUpdated = true;
-    //                   break;
-    //               }
-    //           }
-
-    //           // If mmId not found in model, it's a new entry
-    //           if (!bUpdated) {
-    //               // Set the new mmId
-    //               oData.mmId = smmId;
-    //           }
-    //           if (sSelectedHrStatus && sEmailId) {
-    //             var oData = {
-    //                 email: sEmailId,
-    //                 hrStatus: sSelectedHrStatus,
-    //                 mmId: smmId
-    //             };
-    //           }
-
-    //           // AJAX request to update employee data
-    //           $.ajax({
-    //               method: "PATCH",
-    //               url: `https://port4004-workspaces-ws-6h6fc.us10.trial.applicationstudio.cloud.sap/odata/v4/catalog/Employees/${sEmployeeId}`,
-    //               contentType: "application/json",
-    //               data: JSON.stringify(oData),
-    //               success: (data) => {
-    //                   MessageBox.show("Employee data updated successfully!");
-    //                   // Call onCancelEmployee() here since the AJAX request is successful
-
-    //               },
-    //               error: (error) => {
-    //                   console.error(error);
-    //               },
-    //           }); 
-    //           this.onCancelEmployee();      
-
-
-    // },
-
+    
     onCancelEmployee() {
       this.byId("editEmployee").close();
     },
-    onPost: function (oEvent) {
-      // var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
-      // var oDate = new Date();
-      // var sDate = oFormat.format(oDate);
-      // Get the current date and time in medium style format
-      var oDate = new Date();
-      var sDate = oDate.toLocaleDateString(undefined, { style: 'medium' }) + ' ' + oDate.toLocaleTimeString(undefined, { style: 'medium' });
 
-      // create new entry
-      var sValue = oEvent.getParameter("value");
-      var oEntry = {
-        Author: "Alexandrina Victoria",
-        AuthorPicUrl: "http://upload.wikimedia.org/wikipedia/commons/a/aa/Dronning_victoria.jpg",
-        Type: "Reply",
-        Date: "" + sDate,
-        Text: sValue
-      };
+//////////////Feed Input//////////////////////////////////////////////////////////////////////////////////
 
-      // update model
-      var oModel = this.getView().getModel();
-      var aEntries = oModel.getData().EntryCollection;
-      aEntries.unshift(oEntry);
-      oModel.setData({
-        EntryCollection: aEntries
-      });
-    },
 
-    onSenderPress: function (oEvent) {
-      MessageBox.show("Clicked on Link: " + oEvent.getSource().getSender());
-    },
+    onPost: function(oEvent) {
+			var oFormat = DateFormat.getDateTimeInstance({ style: "medium" });
+			var oDate = new Date();
+			var sDate = oFormat.format(oDate);
 
-    onIconPress: function (oEvent) {
-      MessageBox.show("Clicked on Image: " + oEvent.getSource().getSender());
-    },
+      
+			// create new entry
+			var sValue = oEvent.getParameter("value");
+			var oEntry = {
+				Author: "Junior Hr",
+				AuthorPicUrl: "sap-icon://hr-approval",
+				Type: "Reply",
+				Date: "" + sDate,
+				Text: sValue
+			};
 
+			// update model
+			var oModel = this.getView().getModel("feedModel");
+			var aEntries = oModel.getData().EntryCollection;
+			aEntries.unshift(oEntry);
+			oModel.setData({
+				EntryCollection: aEntries
+			});
+		},
+
+		onSenderPress: function(oEvent) {
+			MessageToast.show("Clicked on Link: " + oEvent.getSource().getSender());
+		},
+
+		onIconPress: function(oEvent) {
+			MessageToast.show("Clicked on Image: " + oEvent.getSource().getSender());
+		},
 
 
 
